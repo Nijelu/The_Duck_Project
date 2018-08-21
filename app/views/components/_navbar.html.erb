@@ -1,24 +1,34 @@
 <div class="navbar-duck-project">
   <!-- Logo -->
-  <a href="/" class="navbar-duck-project-brand">
-    <i class="fas fa-cocktail"></i>
-  </a>
+  <%= link_to root_path, class: "navbar-duck-project-brand" do %>
+    <%= image_tag 'logo.png' %>
+  <% end %>
 
+    <div class="form_in_navbar text-center">
+      <form>
+        <div class="form-group">
+          <input type="text" placeholder="Yellow duck...">
+          <input type="submit" value="Search a duck!" class="btn btn-light">
+        </div>
+      </form>
+    </div>
   <!-- Right Navigation -->
   <div class="navbar-duck-project-right hidden-xs hidden-sm">
 
-    <a href="" class="navbar-duck-project-item navbar-duck-project-link">Host</a>
-    <a href="" class="navbar-duck-project-item navbar-duck-project-link">Trips</a>
-    <a href="" class="navbar-duck-project-item navbar-duck-project-link">Messages</a>
+
+    <a href="" class="navbar-duck-project-item navbar-duck-project-link">empty</a>
+    <a href="" class="navbar-duck-project-item navbar-duck-project-link">empty</a>
+    <a href="" class="navbar-duck-project-item navbar-duck-project-link">empty</a>
+
 
     <!-- Profile picture with dropdown list -->
     <div class="navbar-duck-project-item">
       <div class="dropdown">
         <img src="https://kitt.lewagon.com/placeholder/users/ArthurGAUTHIER" class="avatar dropdown-toggle" id="navbar-duck-project-menu" data-toggle="dropdown">
         <ul class="dropdown-menu dropdown-menu-right navbar-duck-project-dropdown-menu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Log Out</a></li>
+          <li><a href="dashboard_path">Profile</a></li>
+          <li><a href="dashboard_path">Dashboard</a></li>
+          <li><a href="destroy_user_session_path">Log Out</a></li>
         </ul>
       </div>
     </div>
@@ -29,9 +39,9 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-duck-project-dropdown-menu">
-        <li><a href="#">Host</a></li>
-        <li><a href="#">Trips</a></li>
-        <li><a href="#">Messagese</a></li>
+        <li><a href="#">Empty</a></li>
+        <li><a href="#">Empty</a></li>
+        <li><a href="#">Empty</a></li>
       </ul>
     </div>
   </div>
