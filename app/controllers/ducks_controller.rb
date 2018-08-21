@@ -7,6 +7,7 @@ class DucksController < ApplicationController
   end
 
   def show
+    @duck = Duck.find(params[:id])
     authorize @duck
   end
 
@@ -30,5 +31,11 @@ class DucksController < ApplicationController
 
   def destroy
     authorize @duck
+  end
+
+  private
+
+  def duck_params
+    params.require(:duck).permit(:title, :description, :price_per_day, :address, :country, :city, :postal_code)
   end
 end
