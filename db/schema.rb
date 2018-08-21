@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_21_080258) do
+ActiveRecord::Schema.define(version: 2018_08_21_085807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.text "tenant_review"
+    t.text "owner_review"
+    t.string "status"
+    t.bigint "duck_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["duck_id"], name: "index_bookings_on_duck_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "ducks", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "price_per_day"
+    t.string "photo"
+    t.string "address"
+    t.float "lat"
+    t.float "lng"
+    t.string "country"
+    t.string "city"
+    t.string "postal_code"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ducks_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +54,15 @@ ActiveRecord::Schema.define(version: 2018_08_21_080258) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo"
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "ducks"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "ducks", "users"
 end
