@@ -1,2 +1,19 @@
-<h1>Ducks#index</h1>
-<p>Find me in app/views/ducks/index.html.erb</p>
+
+<div class="container flexbox">
+  <h1>Find my duck</h1>
+
+  <div class="container">
+    <div class="row">
+      <% @duck.each do |duck| %>
+        <div class="col-xs-12 col-sm-4">
+           <%= link_to duck_path(duck) do %>
+            <%= render 'components/card', duck: duck %>
+            <br>
+           <% end %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
