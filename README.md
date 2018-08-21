@@ -2,7 +2,7 @@ Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/ra
 
 # Install Batch
 
-Do the folowing command after cloning
+Do the following command after cloning
 
 ```batch
 bundle install
