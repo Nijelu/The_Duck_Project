@@ -6,7 +6,8 @@
     <div class="panel-body">
       <p><%= @user.first_name << ' ' << @user.last_name%></p>
       <p><%= @user.email %></p>
-      <%= image_tag(@user.photo) unless @user.photo.blank? %>
+      <%= cl_image_tag(@user.photo) unless @user.photo.blank? %>
+      <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-primary' %>
     </div>
   </div>
 
@@ -15,12 +16,13 @@
       <h2 class="panel-title">My bookings</h2>
     </div>
     <div class="panel-body">
-      <ul class="list-unstyled">
-        <% @user.bookings.each do |booking| %>
-          <li><%= link_to booking.title  %></li>
-        <% end %>
-      </ul>
+
     </div>
+    <ul class="list-group">
+      <% @user.bookings.each do |booking| %>
+        <li class="list-group-item"><%= link_to booking.title, booking_path(booking)  %></li>
+      <% end %>
+    </ul>
   </div>
 
   <div class="panel panel-default" id="profile">
@@ -28,12 +30,15 @@
       <h2 class="panel-title">My ducks</h2>
     </div>
     <div class="panel-body">
-      <ul class="list-unstyled">
-        <% @user.ducks.each do |duck| %>
-          <li><%= link_to duck.title %></li>
-        <% end %>
-      </ul>
+      <div class="text-center">
+        <%= link_to 'Add a duck', new_duck_path, class: 'btn btn-primary' %>
+      </div>
     </div>
+    <ul class="list-group">
+      <% @user.ducks.each do |duck| %>
+        <li class="list-group-item"><%= link_to duck.title, duck_path(duck) %> | <%= link_to 'edit', edit_duck_path(duck) %></li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
