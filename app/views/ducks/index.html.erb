@@ -4,7 +4,7 @@
 
   <div class="container">
     <div class="row">
-      <% @duck.each do |duck| %>
+      <% @ducks.each do |duck| %>
         <div class="col-xs-12 col-sm-4">
            <%= link_to duck_path(duck) do %>
             <%= render 'components/card', duck: duck %>

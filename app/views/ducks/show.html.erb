@@ -1,13 +1,21 @@
-<h1>Ducks#show</h1>
-<p>Find me in app/views/ducks/show.html.erb</p>
-<div class="container vertical-flexbox">
-  <h1></h1>
-  <div class="lateral-flexbox">
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-7">
+      <div class="fiche">
+        <h1><%= @duck.title %></h1>
+        <%= cl_image_tag @duck.photo, height: 300, width: 400, crop: :fill %>
+        <h4><%= @duck.description %></h4>
+        <%= link_to new_duck_booking_path(@duck), {class: "btn btn-primary"} do %>
+          <%= @duck.price_per_day.to_s + '€' %>
+          <br>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-5">
+      <div id="map" style="width: 100%; height: 100vh;" data-markers="<%= @markers.to_json %>"></div>
+    </div>
+    <%= link_to "Back to list", ducks_path, {class: "btn btn-primary"}%>
   </div>
-  <div class="fiche">
-    <%= cl_image_tag @duck.photo, height: 300, width: 400, crop: :fill %>
-      <h2><%= @duck.title %></h2>
-      <h4><%= @duck.description %></h4>
-  </div>
-    <%= link_to "Back to list", ducks_path, class: "btn btn-primary"%>
 </div>

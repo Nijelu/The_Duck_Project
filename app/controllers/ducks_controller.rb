@@ -4,11 +4,16 @@ class DucksController < ApplicationController
 
   before_action :set_params, only: [:show, :edit, :update, :destroy]
   def index
-    @duck = policy_scope(Duck)
+    @ducks = policy_scope(Duck)
   end
 
   def show
     authorize @duck
+    @marker = {
+        lat: @duck.latitude,
+        lng: @duck.longitude
+        # infoWindow: { content: render_to_string(partial: "/ducks/map_box", locals: { duck: duck }) }
+      }
   end
 
   def new
