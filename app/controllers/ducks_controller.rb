@@ -47,6 +47,6 @@ class DucksController < ApplicationController
   end
 
   def duck_params
-    params.require(:duck).permit(:title, :description, :price_per_day, :address, :city,:country, :postal_code, :photo)
+    params.require(:duck).permit(:title, :description, :price_per_day, :address, :photo, :latitude, :longitude)
   end
 end
