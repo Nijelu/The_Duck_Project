@@ -1,2 +1,13 @@
 <h1>Ducks#show</h1>
 <p>Find me in app/views/ducks/show.html.erb</p>
+<div class="container vertical-flexbox">
+  <h1></h1>
+  <div class="lateral-flexbox">
+  </div>
+  <div class="fiche">
+    <%= cl_image_tag @duck.photo, height: 300, width: 400, crop: :fill %>
+      <h2><%= @duck.title %></h2>
+      <h4><%= @duck.description %></h4>
+  </div>
+    <%= link_to "Back to list", ducks_path, class: "btn btn-primary"%>
+</div>
