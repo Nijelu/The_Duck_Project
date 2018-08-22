@@ -5,7 +5,7 @@
   <% end %>
 
     <div class="form_in_navbar text-center">
-      <form>
+      <form action="/ducks" method="GET">
         <div class="form-group">
           <input type="text" placeholder="Yellow duck...">
           <input type="submit" value="Search a duck!" class="btn btn-light">
@@ -26,9 +26,10 @@
       <div class="dropdown">
         <img src="https://kitt.lewagon.com/placeholder/users/ArthurGAUTHIER" class="avatar dropdown-toggle" id="navbar-duck-project-menu" data-toggle="dropdown">
         <ul class="dropdown-menu dropdown-menu-right navbar-duck-project-dropdown-menu">
-          <li> <%= link_to "Profile", dashboard_path  %> </li>
-          <li><%= link_to "Dashboard", dashboard_path  %></li>
-          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to("Log in", user_session_path) if !current_user %></li>
+          <li><%= link_to "Profile", dashboard_path %> </li>
+          <li><%= link_to "Dashboard", dashboard_path %></li>
+          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete if current_user%></li>
         </ul>
       </div>
     </div>
