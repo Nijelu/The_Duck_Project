@@ -1,6 +1,9 @@
 class Duck < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   belongs_to :user
   has_many :bookings
 
@@ -8,5 +11,7 @@ class Duck < ApplicationRecord
   validates :description, presence: true
   validates :price_per_day, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :address, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
   validates :user, presence: true
 end
