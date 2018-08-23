@@ -9,11 +9,11 @@ class DucksController < ApplicationController
 
   def show
     authorize @duck
-    @marker = {
+    @markers = [{
         lat: @duck.latitude,
         lng: @duck.longitude
         # infoWindow: { content: render_to_string(partial: "/ducks/map_box", locals: { duck: duck }) }
-      }
+      }]
   end
 
   def new
