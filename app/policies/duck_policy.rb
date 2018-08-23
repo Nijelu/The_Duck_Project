@@ -29,7 +29,7 @@ class DuckPolicy < ApplicationPolicy
     record.user == user
   end
 
-  def detroy?
+  def destroy?
     record.user == user
   end
 
