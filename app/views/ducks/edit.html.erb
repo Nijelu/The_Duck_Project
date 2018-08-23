@@ -1,2 +1,9 @@
-<h1>Ducks#edit</h1>
-<p>Find me in app/views/ducks/edit.html.erb</p>
+
+<div class="container flexbox">
+  <h1>Edit your duck</h1>
+  <div class="container flexbox duck_address">
+    <%= render 'components/duck_form', duck: @duck %>
+    <br>
+    <%= link_to "Back to list", ducks_path, class: "btn btn-primary"%>
+  </div>
+</div>
