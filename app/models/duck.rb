@@ -11,7 +11,5 @@ class Duck < ApplicationRecord
   validates :description, presence: true
   validates :price_per_day, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :address, presence: true
-  validates :latitude, presence: true
-  validates :longitude, presence: true
   validates :user, presence: true
 end
