@@ -1,7 +1,7 @@
 class DuckPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-        scope.where.not(latitude: nil, longitude: nil)
+      scope.where.not(latitude: nil, longitude: nil)
     end
   end
 
