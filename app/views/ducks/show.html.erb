@@ -20,12 +20,12 @@
     <br>
     <br>
     <% if user_signed_in? && @duck.user == current_user %>
-      <%= link_to "Edit duck", ducks_path, class: "btn btn-warning"%>
+      <%= link_to "Edit duck", edit_duck_path(@duck), class: "btn btn-warning" %>
     <% end %>
     <br>
     <br>
     <% if user_signed_in? && @duck.user == current_user %>
-      <%= link_to "Delete duck", ducks_path, class: "btn btn-danger"%>
+      <%= link_to "Delete duck", duck_path(@duck), class: "btn btn-danger", method: :delete %>
     <% end %>
   </div>
 </div>
