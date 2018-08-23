@@ -1,2 +1,26 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<div class="container">
+  <h1><u> My booking details</u></h1>
+  <br> <br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <div class="media">
+        <div class="media-left">
+          <%= cl_image_tag @booking.duck.photo, height: 300, width: 400, crop: :fill, class: "media-object" %>
+        </div>
+        <div class="media-body">
+          <h3 class="media-heading"><b><%= @booking.duck.title %></b></h3>
+          <h5> Reservé du <%= @booking.start_date %> au <%= @booking.end_date %>  </h5>
+          <h5> Total: <b><%= (@booking.end_date - @booking.start_date).to_i * @booking.duck.price_per_day %> € </b> </h5>
+          <p> My review : <%= @booking.owner_review %> </p>
+          <p> Tenant review : <%= @booking.tenant_review %> </p>
+          <p> Status : <i> <%= @booking.status %> </i></p>
+          <%=  link_to "Add a review", "/", class: "btn btn-warning" %>
+          <%=  link_to "Back to dashboard", dashboard_path, class: "btn btn-primary" %>
+        </div>
+        <br> <br> <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,19 @@
+<div class="container">
+  <h1><u> List of my booking</u></h1>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <% @bookings.each do |booking| %>
+      <div class="media">
+        <div class="media-left">
+          <%= cl_image_tag booking.duck.photo, height: 100, width: 130, crop: :fill, class: "media-object" %>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><b><%= booking.duck.title %></b></h4>
+          <p> Reservé du <%= booking.start_date %> au <%= booking.end_date %>  </p>
+          <p> Total: <%= (booking.end_date - booking.start_date).to_i * booking.duck.price_per_day %> € </p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
