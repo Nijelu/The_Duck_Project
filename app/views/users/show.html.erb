@@ -36,7 +36,7 @@
     </div>
     <ul class="list-group">
       <% @user.ducks.each do |duck| %>
-        <li class="list-group-item"><%= link_to duck.title, duck_path(duck) %> | <%= link_to 'edit', edit_duck_path(duck) %></li>
+        <li class="list-group-item"><%= link_to duck.title, duck_path(duck) %> | <%= link_to 'edit', edit_duck_path(duck) %> | <%= link_to 'delete', duck_path(duck), method: :delete %></li>
       <% end %>
     </ul>
   </div>

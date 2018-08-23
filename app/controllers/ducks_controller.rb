@@ -39,10 +39,18 @@ class DucksController < ApplicationController
 
   def update
     authorize @duck
+    if @duck.update(duck_params)
+      redirect_to duck_path(@duck)
+    else
+      render :edit
+    end
   end
 
   def destroy
     authorize @duck
+    @duck.destroy
+
+    redirect_to dashboard_path
   end
 
   private
