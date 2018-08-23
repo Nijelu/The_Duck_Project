@@ -5,3 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+ducks = Duck.create( title: 'Saturnin', description: 'blabla', price_per_day: 9, address: '2 avenue des Saules, Lille', user: User.new )
