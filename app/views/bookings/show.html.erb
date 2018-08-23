@@ -21,6 +21,20 @@
       </div>
     </div>
   </div>
-</div>
+  <h2>Add a review to <%= @booking.duck.title %></h2>
+  <form id="review-form" action="/action_page.php">
+    Object:<br>
+    <input id="message-object" type="text" name="firstname">
+    <br>
+    Content:<br>
+    <input id="message-content" type="text" name="lastname">
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
+  <ul>
 
+  </ul>
+
+  <%= render 'components/inbox' %>
+</div>
 
