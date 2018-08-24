@@ -24,7 +24,7 @@ $border-radius-base:  2px;
 $border-radius-large: 2px;
 $border-radius-small: 2px;
 
-$state-info-text:                $duck-dark-blue !default;
+$state-info-text:                black !default;
 $state-info-bg:                  $duck-blue !default;
 $state-info-border: darken(adjust-hue($state-info-bg, -10), 7%) !default;
 

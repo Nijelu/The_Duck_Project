@@ -1,17 +1,30 @@
 <div class="container">
-  <h3> Great! You want to book "<%= @duck.title %>"</h3>
-
-  <div class="row">
-    <div class='col-sm-4'>
-      <%= render 'components/card', duck: @duck %>
-      <br>
-      <div class='col-sm-12'>
-    <%= simple_form_for [@duck, @booking], method: :post do |f| %>
-
-        <input type="text" name="dates" id="flatp" data-disabled-dates=<%= @disabledates.to_json %>>
-      <%= f.button :submit, "Book now!", class: "btn btn-primary"%>
-    <% end %>
+  <br><br><br><br><br><br>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <div class="text-center">
+      <h1 class="panel-title">
+        Great! Book "<%= @duck.title %>" !
+      </h1>
+      </div>
     </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class='col-xs-4 col-xs-offset-4'>
+          <%= render 'components/card', duck: @duck %>
+          <br>
+        </div>
+        <div class='col-xs-6 col-xs-offset-3'>
+          <div class="text-center">
+            <%= simple_form_for [@duck, @booking], method: :post do |f| %>
+
+                <input type="text" name="dates" id="flatp" data-disabled-dates=<%= @disabledates.to_json %>>
+              <%= f.button :submit, "Book now!", class: "btn btn-primary"%>
+            <% end %>
+          </div>
+        </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

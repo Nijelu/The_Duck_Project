@@ -1,46 +1,69 @@
 <div class="container">
-  <h1><u> My booking details</u></h1>
-  <br> <br>
-  <div class="row">
-    <div class="col-xs-12 col-sm-12">
-      <div class="media">
-        <div class="media-left">
-          <%= cl_image_tag @booking.duck.photo, height: 300, width: 400, crop: :fill, class: "media-object" %>
-        </div>
-        <div class="media-body">
-          <h3 class="media-heading"><b><%= @booking.duck.title %></b></h3>
-          <h5> Reservé du <%= @booking.start_date %> au <%= @booking.end_date %>  </h5>
-          <h5> Total: <b><%= (@booking.end_date - @booking.start_date).to_i * @booking.duck.price_per_day %> € </b> </h5>
-          <p> Status : <i> <%= @booking.status %> </i></p>
-          <div>
-          <%= simple_form_for [@booking.duck, @booking], method: :patch do |f| %>
-            <%= f.input :status, as: :hidden, input_html: { value: 'finished' } %>
-            <%= f.submit value: 'Mark as done', class: 'btn btn-info' %>
-          <% end %>
-          </div>
-      </div>
-      <br> <br>
-    </div>
-  </div>
-  <div>
-    <p> Owner's review : <br> <%= render 'components/owner_review', booking: @booking %> </p>
-    <p> Tenant's review : <br> <%= render 'components/tenant_review', booking: @booking %> </p>
-    <% if current_user == @booking.duck.user && @booking.owner_review.blank? %>
-      <h4>Add a review to <%= @booking.duck.title %>'s booking </h4>
-      <%= simple_form_for [@booking.duck, @booking], method: :patch do |f| %>
-        <%= f.input :owner_review %>
-        <%= f.submit value: 'Submit', class: 'btn btn-info' %>
-      <% end %>
-    <% elsif current_user == @booking.user && @booking.tenant_review.blank? %>
-      <h4>Add a review to <%= @booking.duck.title %>'s booking </h4>
-      <%= simple_form_for [@booking.duck, @booking], method: :patch do |f| %>
-        <%= f.input :tenant_review %>
-        <%= f.submit value: 'Submit', class: 'btn btn-info' %>
-      <% end %>
-    <% end %>
+  <br>
+  <div class="text-center">
+  <%=  link_to "Back to dashboard", dashboard_path, class: "btn btn-primary" %>
   </div>
   <br>
-  <%=  link_to "Back to dashboard", dashboard_path, class: "btn btn-primary" %>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <div class="text-center">
+        <h1 class="panel-title">Booking details</h1>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12">
+          <div class="text-center">
+            <div class="media">
+              <div class="media-left">
+                <%= cl_image_tag @booking.duck.photo, height: 300, width: 400, crop: :fill, class: "media-object" %>
+              </div>
+              <div class="media-body">
+                <h3 class="media-heading"><b><%= @booking.duck.title %></b></h3>
+                <h5> Reservé du <%= @booking.start_date %> au <%= @booking.end_date %>  </h5>
+                <h5> Total: <b><%= (@booking.end_date - @booking.start_date).to_i * @booking.duck.price_per_day %> € </b> </h5>
+                <p> Status : <i> <%= @booking.status %> </i></p>
+                <div>
+                  <%= simple_form_for [@booking.duck, @booking], method: :patch do |f| %>
+                  <%= f.input :status, as: :hidden, input_html: { value: 'finished' } %>
+                  <%= f.submit value: 'Mark as done', class: 'btn btn-info' %>
+                  <% end %>
+                </div>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <div class="text-center">
+        <h3 class="panel-title">Reviews</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <br>
+        <p> Owner's review : <br> <%= render 'components/owner_review', booking: @booking %> </p>
+        <p> Tenant's review : <br> <%= render 'components/tenant_review', booking: @booking %> </p>
+        <% if current_user == @booking.duck.user && @booking.owner_review.blank? %>
+        <h4>Add a review to <%= @booking.duck.title %>'s booking </h4>
+        <%= simple_form_for [@booking.duck, @booking], method: :patch do |f| %>
+        <%= f.input :owner_review %>
+        <%= f.submit value: 'Submit', class: 'btn btn-info' %>
+        <% end %>
+        <% elsif current_user == @booking.user && @booking.tenant_review.blank? %>
+        <h4>Add a review to <%= @booking.duck.title %>'s booking </h4>
+        <%= simple_form_for [@booking.duck, @booking], method: :patch do |f| %>
+        <%= f.input :tenant_review %>
+        <%= f.submit value: 'Submit', class: 'btn btn-info' %>
+        <% end %>
+        <% end %>
+        <br>
+      </div>
+    </div>
+  </div>
 </div>
-
-
