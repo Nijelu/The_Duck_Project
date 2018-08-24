@@ -27,6 +27,16 @@ class BookingsController < ApplicationController
     end
   end
 
+  def update
+    @duck = Duck.find(params[:duck_id])
+    @booking = Booking.find(params[:id])
+    @booking.status = "finished"
+    authorize @booking
+    @booking.save
+    redirect_to booking_path(@booking)
+
+  end
+
   private
 
   def set_params
