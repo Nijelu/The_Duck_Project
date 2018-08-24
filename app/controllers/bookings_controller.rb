@@ -10,11 +10,15 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @duck = Duck.find(params[:duck_id])
     authorize @booking
+
+    @disabledates = @duck.bookings.all.map { |booking| [booking.start_date, booking.end_date] }
   end
 
   def create
+    dates = params[:dates].split(' to ')
+    
     @duck = Duck.find(params[:duck_id])
-    @booking = Booking.new(booking_create_params)
+    @booking = Booking.new(start_date: dates[0], end_date: dates[1])
     @booking.user = current_user
     @booking.status = "pending"
     @booking.duck = @duck
@@ -40,10 +44,6 @@ class BookingsController < ApplicationController
 
   def set_params
     @booking = Booking.find(params[:id])
-  end
-
-  def booking_create_params
-    params.require(:booking).permit(:start_date, :end_date)
   end
 
   def booking_update_params
