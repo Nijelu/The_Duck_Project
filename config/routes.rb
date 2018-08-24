@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :ducks do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:new, :create, :update]
   end
 
   resources :bookings, only: [:show]

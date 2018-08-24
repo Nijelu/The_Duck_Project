@@ -16,4 +16,9 @@ class BookingPolicy < ApplicationPolicy
   def show?
     record.user == user || record.duck.user == user
   end
+
+  def update?
+    true
+  end
+
 end
