@@ -6,7 +6,7 @@
     <div class="panel-body">
       <p><%= @user.first_name << ' ' << @user.last_name%></p>
       <p><%= @user.email %></p>
-      <%= cl_image_tag(@user.photo) unless @user.photo.blank? %>
+      <%= cl_image_tag(@user.photo, height: 300, width: 400, crop: :fill) unless @user.photo.blank? %>
       <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-primary' %>
     </div>
   </div>
@@ -14,9 +14,6 @@
   <div class="panel panel-default" id="profile">
     <div class="panel-heading">
       <h2 class="panel-title">My bookings</h2>
-    </div>
-    <div class="panel-body">
-
     </div>
     <ul class="list-group">
       <% @user.bookings.each do |booking| %>
