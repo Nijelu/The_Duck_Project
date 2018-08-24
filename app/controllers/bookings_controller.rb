@@ -11,6 +11,9 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @duck = Duck.find(params[:duck_id])
     authorize @booking
+
+    @disabledates = []
+    @duck.bookings.all.each {|booking| @disabledates << [booking.start_date, booking.end_date] }
   end
 
   def create
