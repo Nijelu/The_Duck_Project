@@ -1,9 +1,10 @@
-
-<div class="container flexbox">
-  <h1>Add a duck</h1>
-  <div class="container flexbox duck_address">
-    <%= render 'components/duck_form', duck: @duck %>
-    <br>
+<div class="container">
+  <br>
+  <div class="text-center">
     <%= link_to "Back to list", ducks_path, class: "btn btn-primary"%>
+  </div>
+  <div class="text-center"><h1>Add a duck</h1></div>
+  <div class="text-center duck_address">
+    <%= render 'components/duck_form', duck: @duck %>
   </div>
 </div>
