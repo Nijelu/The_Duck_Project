@@ -5,12 +5,15 @@
   <% end %>
 
     <div class="form_in_navbar text-center">
-      <form action="/ducks" method="GET">
-        <div class="form-group">
-          <input type="text" placeholder="Yellow duck...">
-          <input type="submit" value="Search a duck!" class="btn btn-light">
-        </div>
-      </form>
+      <%= form_tag ducks_path, method: :get do %>
+      <div class="form-group">
+        <%= text_field_tag :query,
+          params[:query],
+          class: 'form_text',
+          placeholder: 'Yello duck...'%>
+        <%= submit_tag 'Search a duck!', class: 'btn btn-primary'%>
+      </div>
+      <% end %>
     </div>
   <!-- Right Navigation -->
   <div class="navbar-duck-project-right hidden-xs hidden-sm">

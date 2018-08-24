@@ -2,11 +2,12 @@
   <div class="banner-content">
     <h1>The Project Duck</h1>
     <br> <br>
-    <form action="/ducks" method="GET">
-      <div class="form-group">
-        <input type="text" name="query" placeholder="Yellow duck..." class="form_text">
-        <input type="submit" value="Search a duck!" class="btn btn-primary">
-      </div>
-    </form>
+    <%= form_tag ducks_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: 'form_text',
+        placeholder: 'Yello duck...'%>
+      <%= submit_tag 'Search a duck!', class: 'btn btn-primary'%>
+    <% end %>
   </div>
 </div>
