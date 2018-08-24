@@ -1,7 +1,6 @@
 
 <div class="container flexbox">
   <h1>Find my duck</h1>
-
   <div class="container">
     <div class="row">
       <% @ducks.each do |duck| %>
@@ -18,5 +17,4 @@
       <%= link_to "Create a duck", new_duck_path, class: "btn btn-success"%>
     <% end %>
   </div>
-
 </div>
