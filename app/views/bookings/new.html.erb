@@ -7,8 +7,8 @@
       <br>
       <div class='col-sm-12'>
     <%= simple_form_for [@duck, @booking], method: :post do |f| %>
-      <%= f.input :start_date, as: :date, html5: true, class: 'datepicker' %>
-      <%= f.input :end_date, as: :date, html5: true, class: ' datepicker' %>
+
+        <input type="text" name="dates" id="flatp" data-disabled-dates=<%= @disabledates.to_json %>>
       <%= f.button :submit, "Book now!", class: "btn btn-primary"%>
     <% end %>
     </div>
