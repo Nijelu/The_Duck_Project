@@ -1,29 +1,50 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-7">
-      <div class="fiche">
-        <h1><%= @duck.title %></h1>
-        <%= cl_image_tag @duck.photo, height: 300, width: 400, crop: :fill %>
-        <h4><%= @duck.description %></h4>
-        <%= link_to new_duck_booking_path(@duck), {class: "btn btn-primary"} do %>
-          <%= @duck.price_per_day.to_s + '€' %>
-          <br>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-xs-5">
-      <div id="map" style="width: 100%; height: 100vh;" data-markers="<%= @markers.to_json %>"></div>
-    </div>
-    <%= link_to "Back to list", ducks_path, {class: "btn btn-primary"}%>
+      <br>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="text-center">
+            <h1 class="panel-title">My duck</h1>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+              <div class="text-center">
+                <%= link_to "Back to list", ducks_path, {class: "btn btn-primary"}%>
+              </div>
+              <br>
+              <%= render 'components/card', duck: @duck %>
+            </div>
+
+            <div class="col-xs-6 col-xs-offset-3">
+              <div class="text-center">
+               <br>
+               <%= link_to new_duck_booking_path(@duck), {class: "btn btn-primary"} do %>
+               <%= 'Book it for ' + @duck.price_per_day.to_s + '€' %>
+               <% end %>
+
+               <br>
+               <br>
+               <% if user_signed_in? && @duck.user == current_user %>
+               <%= link_to "Edit duck", edit_duck_path(@duck), class: "btn btn-warning" %>
+               <% end %>
+               <br>
+               <br>
+               <% if user_signed_in? && @duck.user == current_user %>
+               <%= link_to "Delete duck", duck_path(@duck), class: "btn btn-danger", method: :delete %>
+               <% end %>
+
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="col-xs-5">
     <br>
-    <br>
-    <% if user_signed_in? && @duck.user == current_user %>
-      <%= link_to "Edit duck", edit_duck_path(@duck), class: "btn btn-warning" %>
-    <% end %>
-    <br>
-    <br>
-    <% if user_signed_in? && @duck.user == current_user %>
-      <%= link_to "Delete duck", duck_path(@duck), class: "btn btn-danger", method: :delete %>
-    <% end %>
+    <div id="map" style="width: 100%; height: calc(85vh - 140px);" data-markers="<%= @markers.to_json %>"></div>
   </div>
+</div>
 </div>

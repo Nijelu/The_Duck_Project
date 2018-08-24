@@ -15,7 +15,7 @@ $brand-primary:   $blue;
 $brand-success:   $green;
 $brand-info:      $duck-dark-blue;
 $brand-danger:    $red;
-$brand-warning:   #ffec49;
+$brand-warning:   $yellow;
 
 $btn-warning-color: black;
 
@@ -25,6 +25,7 @@ $border-radius-large: 2px;
 $border-radius-small: 2px;
 
 $state-info-text:                black !default;
+$state-warning-text:                black !default;
 $state-info-bg:                  $duck-blue !default;
 $state-info-border: darken(adjust-hue($state-info-bg, -10), 7%) !default;
 

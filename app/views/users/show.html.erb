@@ -36,18 +36,19 @@
         <%= link_to 'Add a duck', new_duck_path, class: 'btn btn-primary' %>
       </div>
     </div>
-    <ul class="list-group">
+    <div class="list-group">
       <% @user.ducks.each do |duck| %>
-        <li class="list-group-item"><%= link_to duck.title, duck_path(duck) %> | <%= link_to 'edit', edit_duck_path(duck) %> | <%= link_to 'delete', duck_path(duck), method: :delete %>
-         <ul class="list-group">
-            <li class="list-group-item">Booking of <%= duck.title %>:</li>
-           <% duck.bookings.each do |booking| %>
-            <li class="list-group-item"><%= link_to booking.duck.title, booking_path(booking) %></li>
+      <div class="list-group-item text-center"><%= link_to duck.title, duck_path(duck) %> | <%= link_to 'edit', edit_duck_path(duck) %> | <%= link_to 'delete', duck_path(duck), method: :delete %>
+        <br>
+        <div class="panel panel-warning">
+          <div class="panel-heading">Booking of <%= duck.title %>:</div>
+          <% duck.bookings.each do |booking| %>
+          <div class="panel-body"><%= link_to booking.duck.title, booking_path(booking) %></div>
           <% end %>
-         </ul>
-        </li>
-      <% end %>
-    </ul>
+        </div>
+      </div>
+    <% end %>
+    </div>
+    </div>
   </div>
 </div>
-
