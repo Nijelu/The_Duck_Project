@@ -1,7 +1,8 @@
 <div class="container">
+  <br>
   <div class="panel panel-info" id="profile">
     <div class="panel-heading">
-      <h3 class="panel-title">My profile</h3>
+      <h3 class="panel-title"><div class="text-center">My profile</div></h3>
     </div>
     <div class="panel-body">
       <div class="text-center">
@@ -15,29 +16,20 @@
 
   <div class="panel panel-info" id="profile">
     <div class="panel-heading">
-      <h2 class="panel-title">My bookings as a tenant</h2>
+      <h2 class="panel-title">
+        <div class="text-center">My bookings as a tenant</div></h2>
     </div>
     <ul class="list-group">
       <% @user.bookings.each do |booking| %>
-        <li class="list-group-item"><%= link_to booking.duck.title, booking_path(booking)  %></li>
+        <li class="list-group-item">
+          <div class="text-center"><%= link_to booking.duck.title, booking_path(booking)  %></div></li>
       <% end %>
     </ul>
   </div>
 
   <div class="panel panel-info" id="profile">
     <div class="panel-heading">
-      <h2 class="panel-title">My bookings as an owner</h2>
-    </div>
-    <ul class="list-group">
-      <% @user.bookings.each do |booking| %>
-        <li class="list-group-item"><%= link_to booking.duck.title, booking_path(booking)  %></li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="panel panel-info" id="profile">
-    <div class="panel-heading">
-      <h2 class="panel-title">My ducks and associated bookings</h2>
+      <h2 class="panel-title"><div class="text-center">My ducks and associated bookings</div></h2>
     </div>
     <div class="panel-body">
       <div class="text-center">
@@ -50,7 +42,7 @@
          <ul class="list-group">
             <li class="list-group-item">Booking of <%= duck.title %>:</li>
            <% duck.bookings.each do |booking| %>
-            <li class="list-group-item"><%= link_to booking.duck.title, duck_path(duck) %></li>
+            <li class="list-group-item"><%= link_to booking.duck.title, booking_path(booking) %></li>
           <% end %>
          </ul>
         </li>
