@@ -4,7 +4,11 @@ class DucksController < ApplicationController
 
   before_action :set_params, only: [:show, :edit, :update, :destroy]
   def index
-    @ducks = policy_scope(Duck)
+    if params[:query].present?
+      @ducks = policy_scope(Duck).search_by_title_and_description(params[:query])
+    else
+      @ducks = policy_scope(Duck).where.not(latitude: nil, longitude: nil)
+    end
   end
 
   def show
