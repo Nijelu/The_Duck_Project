@@ -11,17 +11,36 @@
           <h3 class="media-heading"><b><%= @booking.duck.title %></b></h3>
           <h5> Reservé du <%= @booking.start_date %> au <%= @booking.end_date %>  </h5>
           <h5> Total: <b><%= (@booking.end_date - @booking.start_date).to_i * @booking.duck.price_per_day %> € </b> </h5>
-          <p> My review : <%= @booking.owner_review %> </p>
-          <p> Tenant review : <%= @booking.tenant_review %> </p>
           <p> Status : <i> <%= @booking.status %> </i></p>
-          <%=  link_to "Add a review", "/", class: "btn btn-warning" %>
-          <%=  link_to "Back to dashboard", dashboard_path, class: "btn btn-primary" %>
-          <%=  link_to "Mark as done", duck_booking_path(@booking.duck), class: "btn btn-info", method: :patch  %>
-        </div>
-        <br> <br> <br>
+          <div>
+          <%= simple_form_for [@booking.duck, @booking], method: :patch do |f| %>
+            <%= f.input :status, as: :hidden, input_html: { value: 'finished' } %>
+            <%= f.submit value: 'Mark as done', class: 'btn btn-info' %>
+          <% end %>
+          </div>
       </div>
+      <br> <br>
     </div>
   </div>
+  <div>
+    <p> Owner's review : <br> <%= render 'components/owner_review', booking: @booking %> </p>
+    <p> Tenant's review : <br> <%= render 'components/tenant_review', booking: @booking %> </p>
+    <% if current_user == @booking.duck.user && @booking.owner_review.blank? %>
+      <h4>Add a review to <%= @booking.duck.title %>'s booking </h4>
+      <%= simple_form_for [@booking.duck, @booking], method: :patch do |f| %>
+        <%= f.input :owner_review %>
+        <%= f.submit value: 'Submit', class: 'btn btn-info' %>
+      <% end %>
+    <% elsif current_user == @booking.user && @booking.tenant_review.blank? %>
+      <h4>Add a review to <%= @booking.duck.title %>'s booking </h4>
+      <%= simple_form_for [@booking.duck, @booking], method: :patch do |f| %>
+        <%= f.input :tenant_review %>
+        <%= f.submit value: 'Submit', class: 'btn btn-info' %>
+      <% end %>
+    <% end %>
+  </div>
+  <br>
+  <%=  link_to "Back to dashboard", dashboard_path, class: "btn btn-primary" %>
 </div>
 
 
