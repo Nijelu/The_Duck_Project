@@ -1,20 +1,35 @@
-
-<div class="container flexbox">
-  <h1>Find my duck</h1>
-  <div class="container">
-    <div class="row">
-      <% @ducks.each do |duck| %>
-        <div class="col-xs-12 col-sm-4">
-           <%= link_to duck_path(duck) do %>
-            <%= render 'components/card', duck: duck %>
-            <br>
-           <% end %>
+<div class="container">
+  <div class="row">
+    <br><br>
+    <div class="col-xs-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <h1>Find my duck</h1>
+          </div>
         </div>
-      <% end %>
-      </div>
-    </div>
-    <% if user_signed_in? %>
-      <%= link_to "Create a duck", new_duck_path, class: "btn btn-success"%>
-    <% end %>
-  </div>
+        <div class="panel-body">
+          <% if user_signed_in? %>
+          <div class="text-center">
+            <%= link_to "Create a duck", new_duck_path, class: "btn btn-success"%>
+          </div>
+          <br>
+          <% end %>
+          <div class="row">
+            <% @ducks.each do |duck| %>
+            <div class="col-xs-12 col-sm-4">
+              <%= link_to duck_path(duck) do %>
+              <%= render 'components/card', duck: duck %>
+             <br>
+             <% end %>
+           </div>
+           <% end %>
+
+         </div>
+       </div>
+     </div>
+
+   </div>
+ </div>
 </div>
+

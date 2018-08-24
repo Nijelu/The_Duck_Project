@@ -16,7 +16,9 @@
   <body>
     <%= render 'components/navbar' %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div class="wrapper">
+      <%= yield %>
+    </div>
     <%= render 'components/footer' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js' %>

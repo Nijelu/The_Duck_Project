@@ -5,13 +5,13 @@
   <% end %>
 
     <div class="form_in_navbar text-center">
-      <%= form_tag ducks_path, method: :get do %>
+      <%= form_tag ducks_path, method: :get, class: 'form-inline' do %>
       <div class="form-group">
         <%= text_field_tag :query,
           params[:query],
-          class: 'form_text',
-          placeholder: 'Yello duck...'%>
-        <%= submit_tag 'Search a duck!', class: 'btn btn-primary'%>
+          class: 'form-control',
+          placeholder: 'Yellow duck...'%>
+        <%= submit_tag 'Search a duck!', class: 'btn btn-warning form-control'%>
       </div>
       <% end %>
     </div>

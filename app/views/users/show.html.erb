@@ -1,19 +1,21 @@
 <div class="container">
-  <div class="panel panel-default" id="profile">
+  <div class="panel panel-info" id="profile">
     <div class="panel-heading">
       <h3 class="panel-title">My profile</h3>
     </div>
     <div class="panel-body">
+      <div class="text-center">
       <p><%= @user.first_name << ' ' << @user.last_name%></p>
       <p><%= @user.email %></p>
-      <%= cl_image_tag(@user.photo, height: 300, width: 400, crop: :fill) unless @user.photo.blank? %>
+      <div><%= cl_image_tag(@user.photo, height: 300, width: 400, crop: :fill) unless @user.photo.blank? %></div><br>
       <%= link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-primary' %>
+      </div>
     </div>
   </div>
 
-  <div class="panel panel-default" id="profile">
+  <div class="panel panel-info" id="profile">
     <div class="panel-heading">
-      <h2 class="panel-title">My bookings</h2>
+      <h2 class="panel-title">My bookings as a tenant</h2>
     </div>
     <ul class="list-group">
       <% @user.bookings.each do |booking| %>
@@ -22,9 +24,20 @@
     </ul>
   </div>
 
-  <div class="panel panel-default" id="profile">
+  <div class="panel panel-info" id="profile">
     <div class="panel-heading">
-      <h2 class="panel-title">My ducks</h2>
+      <h2 class="panel-title">My bookings as an owner</h2>
+    </div>
+    <ul class="list-group">
+      <% @user.bookings.each do |booking| %>
+        <li class="list-group-item"><%= link_to booking.duck.title, booking_path(booking)  %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="panel panel-info" id="profile">
+    <div class="panel-heading">
+      <h2 class="panel-title">My ducks and associated bookings</h2>
     </div>
     <div class="panel-body">
       <div class="text-center">
@@ -33,7 +46,14 @@
     </div>
     <ul class="list-group">
       <% @user.ducks.each do |duck| %>
-        <li class="list-group-item"><%= link_to duck.title, duck_path(duck) %> | <%= link_to 'edit', edit_duck_path(duck) %> | <%= link_to 'delete', duck_path(duck), method: :delete %></li>
+        <li class="list-group-item"><%= link_to duck.title, duck_path(duck) %> | <%= link_to 'edit', edit_duck_path(duck) %> | <%= link_to 'delete', duck_path(duck), method: :delete %>
+         <ul class="list-group">
+            <li class="list-group-item">Booking of <%= duck.title %>:</li>
+           <% duck.bookings.each do |booking| %>
+            <li class="list-group-item"><%= link_to booking.duck.title, duck_path(duck) %></li>
+          <% end %>
+         </ul>
+        </li>
       <% end %>
     </ul>
   </div>
