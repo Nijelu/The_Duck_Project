@@ -1,0 +1,15 @@
+<div class="message">
+  <% if current_user.nil? || current_user.photo.blank? %>
+    <%= image_tag "blank-avatar.png", class: "avatar-large", :gravity=>"face", :width=>70, :height=>70, :crop=>"thumb"  %>
+  <% else %>
+    <%= cl_image_tag booking.duck.user.photo, class: "avatar-large", :gravity=>"face", :width=>70, :height=>70, :crop=>"thumb" %>
+  <% end %>
+  <div class="message-name">
+    <h3><strong><%= booking.duck.user.first_name + " " + booking.duck.user.last_name %></strong></h3>
+    <p><%= Date.today %></p>
+  </div>
+  <br>
+  <div class="message-body">
+    <p><strong><%= booking.owner_review %></strong></p>
+  </div>
+</div>

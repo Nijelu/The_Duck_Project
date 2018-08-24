@@ -1,9 +1,8 @@
 class BookingsController < ApplicationController
   # use 'authorize @booking' in methods
-  before_action :set_params, only: [:show]
+  before_action :set_params, only: [:show, :update]
 
   def show
-    @bookings = Booking.all
     authorize @booking
   end
 
@@ -15,7 +14,7 @@ class BookingsController < ApplicationController
 
   def create
     @duck = Duck.find(params[:duck_id])
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new(booking_create_params)
     @booking.user = current_user
     @booking.status = "pending"
     @booking.duck = @duck
@@ -29,12 +28,12 @@ class BookingsController < ApplicationController
 
   def update
     @duck = Duck.find(params[:duck_id])
-    @booking = Booking.find(params[:id])
-    @booking.status = "finished"
     authorize @booking
-    @booking.save
-    redirect_to booking_path(@booking)
-
+    if @booking.update(booking_update_params)
+      redirect_to booking_path(@booking)
+    else
+      render :new
+    end
   end
 
   private
@@ -43,7 +42,11 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
-  def booking_params
+  def booking_create_params
     params.require(:booking).permit(:start_date, :end_date)
+  end
+
+  def booking_update_params
+    params.require(:booking).permit(:tenant_review, :owner_review, :status)
   end
 end
